@@ -11,7 +11,37 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
         return res;
     }
 
-    /**
+    /**暴力解法
+    int left = 0;
+    for(int i = 0; i < numsSize; i++)
+    {
+        if(nums[i] == target)//第一个相等的位置
+        {
+            if(i == numsSize - 1)
+            {
+                res[1] = i;
+            }
+            if(left == 1)
+            {
+                continue;
+            }
+            left = 1;
+            res[0] = i;
+            continue;
+        }
+
+        //不等的时候，有序数组后面都不等
+        if(left == 1)
+        {
+            res[1] = i - 1;
+            break;
+        }
+    }
+
+    return res;
+    **/
+
+    
     //二分查找，确定初始中间点
     int left = 0;
     int right = numsSize - 1;
@@ -48,7 +78,7 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
         temp = (left + middle_left) / 2;
         if(nums[temp] == target)
         {
-            middle_left = temp - 1;
+            middle_left = temp;
         }
         else if(nums[temp] < target)
         {
@@ -59,7 +89,7 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
 
     temp = 0;
     int middle_right = middle;
-    while(middle_right < right)//右边只关注最大位置，从中间往高处缩小范围
+    while(middle_right <= right)//右边只关注最大位置，从中间往高处缩小范围
     {
         temp = (middle_right + right) / 2;
         if(nums[temp] == target)
@@ -71,38 +101,7 @@ int* searchRange(int* nums, int numsSize, int target, int* returnSize){
             right = temp - 1;
         }
     }
-    res[1] = right;
-
-    return res;
-
-    **/
-
-    //暴力解法
-    int left = 0;
-    for(int i = 0; i < numsSize; i++)
-    {
-        if(nums[i] == target)//第一个相等的位置
-        {
-            if(i == numsSize - 1)
-            {
-                res[1] = i;
-            }
-            if(left == 1)
-            {
-                continue;
-            }
-            left = 1;
-            res[0] = i;
-            continue;
-        }
-
-        //不等的时候，有序数组后面都不等
-        if(left == 1)
-        {
-            res[1] = i - 1;
-            break;
-        }
-    }
+    res[1] = middle_right - 1;
 
     return res;
 }
