@@ -8,6 +8,7 @@ int fib(int n){
         return 1;
     }
 
+    /* 解法 1
     int *res = (int*)malloc(sizeof(int) * (n + 1));
     res[0] = 0;
     res[1] = 1;
@@ -18,4 +19,18 @@ int fib(int n){
     }
 
     return res[n];
+    */
+
+    /* 解法 2 */
+    /*滚动数组，循环利用 3 个临时变量，空间复杂度为 1 */
+    int a = 0;
+    int b = 1;
+    int c = 1;
+    for(int i = 3; i <= n; i++)
+    {
+        a = b;
+        b = c;
+        c = a + b;
+    }
+    return c;
 }
