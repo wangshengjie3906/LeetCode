@@ -30,7 +30,6 @@ int maxSubArray(int* nums, int numsSize){
     */
 
     /*动态规划解法*/
-
     if(numsSize == 1)
     {
         return nums[0];
@@ -38,7 +37,6 @@ int maxSubArray(int* nums, int numsSize){
 
     int sum = nums[0];
     int temp = 0;
-
     for(int i = 0; i < numsSize; i++)
     {
         temp = (temp + nums[i]) > nums[i] ? (temp + nums[i]) : nums[i];
