@@ -25,7 +25,7 @@ int searchInsert(int* nums, int numsSize, int target){
             right = flag - 1;
         }
 
-        flag = (left + right) / 2;
+        flag = left + (right - left) / 2;
     }
 
     return (nums[flag] < target ? flag + 1 : flag);
