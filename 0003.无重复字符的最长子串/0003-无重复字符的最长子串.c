@@ -41,8 +41,8 @@ int lengthOfLongestSubstring(char * s){
     int result = 0;
     char *tail = s;
     char *head = s;
-    char *p;
 
+    char *p;
     while(*head != '\0')
     {
         for(p = tail; p < head; p++)
@@ -53,6 +53,7 @@ int lengthOfLongestSubstring(char * s){
                 break;
             }
         }
+        
         result = fmax(head - tail + 1, result);
         head++;
     }
