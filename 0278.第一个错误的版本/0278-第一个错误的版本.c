@@ -13,7 +13,7 @@ int firstBadVersion(int n) {
 
     while (left < right)
     {
-        middle = left + (right - left) / 2;
+        middle = left + (right - left) / 2;// 注意可能会溢出的情况
         if (isBadVersion(middle))
         {
             right = middle;
