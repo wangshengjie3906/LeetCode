@@ -1,23 +1,31 @@
 int mySqrt(int x){
-    if(x == 1)
-    {  
-        return 1;
-    }
-    int min = 0;
-    int max = x;
-    int m;
-    while((max - min) > 1)
+    if(x < 2)
     {
-        m = (max + min) / 2;//用x/m<m而不是m*m>x防止溢出
-        if(x / m < m)
+        return x;
+    }
+    
+    int left = 1;
+    int right = x;
+    int mid = 0;
+    int temp = 0;
+
+    while(left <= right)
+    {
+        mid = left + (right - left) / 2;
+        temp = x / mid; // mid * mid 在数据较大时会溢出
+        if(temp == mid)
         {
-            max = m;
+            return mid;
+        }
+        else if(temp < mid)
+        {
+            right = mid - 1;
         }
         else
         {
-            min = m;
+            left = mid + 1;
         }
     }
 
-    return min;
+    return right;
 }

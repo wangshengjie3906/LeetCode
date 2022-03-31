@@ -2,27 +2,22 @@
 // bool isBadVersion(int version);
 
 int firstBadVersion(int n) {
-    if (n == 1)
-    {
-        return 1;
-    }
-
     int left = 1;
     int right = n;
-    int middle = 1;
+    int mid;
 
-    while (left < right)
+    while(left < right)
     {
-        middle = left + (right - left) / 2;// 注意可能会溢出的情况
-        if (isBadVersion(middle))
+        mid = left + (right - left) / 2;
+        if(isBadVersion(mid))
         {
-            right = middle;
+            right = mid;
         }
         else
         {
-            left = middle + 1;
+            left = mid + 1;
         }
     }
 
-    return left;
+    return right;
 }
