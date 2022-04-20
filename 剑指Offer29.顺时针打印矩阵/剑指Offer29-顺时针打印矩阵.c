@@ -24,36 +24,37 @@ int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSi
         {
             res[n++] = matrix[top][i];
         }
+
+        // from top to botton
         if(++top > botton)
         {
             break;
         }
-
-        // from top to botton
         for(int i = top; i <= botton; i++)
         {
             res[n++] = matrix[i][right];
         }
+
+        // from right to left
         if(--right < left)
         {
             break;
         }
-
-        // from right to left
         for(int i = right; i >= left; i--)
         {
             res[n++] = matrix[botton][i];
         }
+
+        // from botton to top
         if(--botton < top)
         {
             break;
         }
-
-        // from botton to top
         for(int i = botton; i >= top; i--)
         {
             res[n++] = matrix[i][left];
         }
+        
         if(++left > right)
         {
             break;
